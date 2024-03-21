@@ -31,3 +31,12 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### application.properties ###
+application.properties
+
+### Other ###
+*.JAR
+*.WAR
+*.EAR
+*.class
