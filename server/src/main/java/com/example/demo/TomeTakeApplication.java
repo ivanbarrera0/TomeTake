@@ -8,6 +8,7 @@ public class TomeTakeApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TomeTakeApplication.class, args);
+		System.out.println("Wow this is working!!!");
 	}
 
 }
