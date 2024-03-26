@@ -84,4 +84,14 @@ public class User {
     public void setCheckoutList(List<Book> checkoutList) {
         this.checkoutList = checkoutList;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

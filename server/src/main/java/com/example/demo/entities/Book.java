@@ -37,6 +37,7 @@ public class Book {
     private User user;
 
     // Can work to add the image of a book later
+    // Need to set the user of the book
 
 
     public Book() {
@@ -59,6 +60,27 @@ public class Book {
         this.genre = genre;
         this.description = description;
         this.publicationYear = publicationYear;
+    }
+
+    public Book(String title, int quantity, String author, String genre, String description, String publicationYear, User user) {
+        this.title = title;
+        this.quantity = quantity;
+        this.author = author;
+        this.genre = genre;
+        this.description = description;
+        this.publicationYear = publicationYear;
+        this.user = user;
+    }
+
+    public Book(int id, String title, int quantity, String author, String genre, String description, String publicationYear, User user) {
+        this.id = id;
+        this.title = title;
+        this.quantity = quantity;
+        this.author = author;
+        this.genre = genre;
+        this.description = description;
+        this.publicationYear = publicationYear;
+        this.user = user;
     }
 
     public int getId() {
@@ -91,6 +113,14 @@ public class Book {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getGenre() {
@@ -128,5 +158,19 @@ public class Book {
     @Override
     public int hashCode() {
         return Objects.hash(id, title, quantity, author, genre, description, publicationYear);
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", quantity=" + quantity +
+                ", author='" + author + '\'' +
+                ", genre='" + genre + '\'' +
+                ", description='" + description + '\'' +
+                ", publicationYear='" + publicationYear + '\'' +
+                ", user=" + user +
+                '}';
     }
 }
