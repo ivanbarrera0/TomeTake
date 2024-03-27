@@ -15,8 +15,8 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    public void saveOrUpdate(Book book) {
-        bookRepository.save(book);
+    public Book saveOrUpdate(Book book) {
+        return bookRepository.save(book);
     }
 
     public Book findBookById(int id) {

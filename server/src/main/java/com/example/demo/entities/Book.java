@@ -147,6 +147,8 @@ public class Book {
         this.publicationYear = publicationYear;
     }
 
+    // It would be a good step to check that books do not have the same title and author
+    // instead of checking for all attributes
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

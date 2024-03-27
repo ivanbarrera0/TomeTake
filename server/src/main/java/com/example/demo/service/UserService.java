@@ -1,9 +1,12 @@
 package com.example.demo.service;
 
 import com.example.demo.entities.User;
+import com.example.demo.exception.DuplicateUsernameException;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -15,11 +18,24 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public void saveOrUpdate(User user) {
-        userRepository.save(user);
+    public User saveOrUpdate(User user) throws DuplicateUsernameException {
+
+        findUserByUsername(user.getUsername());
+
+        return userRepository.save(user);
     }
 
     public User findUserById(int id) {
         return userRepository.findUserById(id);
     }
+
+    public void findUserByUsername(String username) throws DuplicateUsernameException {
+
+        Optional<User> foundUser = userRepository.findUserByUsername(username);
+
+        if(foundUser.isPresent()) {
+            throw new DuplicateUsernameException("Username already exists!");
+        }
+    }
+
 }

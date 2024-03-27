@@ -1,7 +1,12 @@
 
-L	java:S106"+Replace this use of System.out by a logger.(òú×şÿÿÿÿ8ƒøÈÜç1
-G	java:S106"+Replace this use of System.out by a logger.(ñˆÜ8„øÈÜç1
-L	java:S106"+Replace this use of System.out by a logger.(ÖŒè³úÿÿÿÿ8…øÈÜç1
-G	java:S106 "+Replace this use of System.out by a logger.(æ÷„×8…øÈÜç1
-L	java:S106""+Replace this use of System.out by a logger.(Äßÿšùÿÿÿÿ8ÛíÉÜç1
-G	java:S106#"+Replace this use of System.out by a logger.(ªÊê8ÿÆÊÜç1
+X	java:S125"<This block of commented-out lines of code should be removed.(ˆÁç›8ëşİç1
+X
+java:S1128";Remove this unused import 'com.example.demo.entities.Book'.(¥†¿–8ìşİç1
+]
+java:S1128";Remove this unused import 'com.example.demo.entities.User'.(šÕ»Âıÿÿÿÿ8ìşİç1
+c
+java:S1128"ARemove this unused import 'com.example.demo.service.BookService'.(¯¯‡³øÿÿÿÿ8ìşİç1
+^
+java:S1128"ARemove this unused import 'com.example.demo.service.UserService'.(ğ€·’8ìşİç1
+h
+java:S1128	"KRemove this unused import 'org.springframework.context.ApplicationContext'.(»Ô»¿8íşİç1
