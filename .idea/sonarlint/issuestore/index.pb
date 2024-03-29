@@ -35,3 +35,7 @@ n
 >server/src/main/java/com/example/demo/dto/RegisterUserDto.java,9\c\9c894f2d6094fbd42f0fe4e2816de82983bc6c2f
 t
 Dserver/src/main/java/com/example/demo/controller/AuthController.java,6\9\69331351071bc2aae77fb19f52790128147e8d0c
+z
+Jserver/src/main/java/com/example/demo/exception/AccessDeniedException.java,5\f\5feb7a7c8a8960eb693f847713f7296a1a83db9f
+z
+Jserver/src/main/java/com/example/demo/exception/UserNotFoundException.java,f\f\ff7fef7cef6dd540ad9d7e5b975e6cebef7bc4df

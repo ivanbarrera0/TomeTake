@@ -38,4 +38,10 @@ public class UserService {
         }
     }
 
+    public User getUserInformation(String username) {
+
+        User user = userRepository.findUserByUsername(username).get();
+        return user;
+    }
+
 }

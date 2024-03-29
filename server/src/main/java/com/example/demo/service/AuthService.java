@@ -1,12 +1,17 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.RegisterUserDto;
+import com.example.demo.entities.Auth;
 import com.example.demo.entities.User;
+import com.example.demo.exception.AccessDeniedException;
 import com.example.demo.exception.DuplicateUsernameException;
+import com.example.demo.exception.UserNotFoundException;
 import com.example.demo.repository.AuthRepository;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class AuthService {
@@ -34,6 +39,25 @@ public class AuthService {
 
         return userService.saveOrUpdate(registerUserDto.getUser());
     }
+
+    public User findUserByUsername(String username, String password) throws UserNotFoundException, AccessDeniedException {
+
+        Optional<Auth> foundUser = authRepository.findByUsername(username);
+
+        if(foundUser.isPresent()) {
+            Auth auth = foundUser.get();
+
+            if(checkHash(password, auth.getPassword())) {
+                User user = userService.getUserInformation(username);
+                return user;
+            }
+            else {
+                throw new AccessDeniedException("Access denied!");
+            }
+        }
+        else {throw new UserNotFoundException("Username or Password is incorrect!");}
+    }
+
 
     public String hash(String text) {
         String salt = BCrypt.gensalt(12);

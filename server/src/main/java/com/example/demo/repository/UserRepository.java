@@ -15,4 +15,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     @Query
     public Optional<User> findUserByUsername(String username);
+
 }
