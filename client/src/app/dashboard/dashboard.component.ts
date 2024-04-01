@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CurrentuserService } from '../currentuser.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,4 +11,9 @@ import { FormsModule } from '@angular/forms';
 })
 export class DashboardComponent {
 
+  currentUserService: CurrentuserService;
+
+  constructor(currentUserService: CurrentuserService) {
+    this.currentUserService = currentUserService;
+  }
 }

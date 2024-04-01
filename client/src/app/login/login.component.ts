@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { Auth, RemoteService } from '../remote.service';
+import { Auth, RemoteService, User } from '../remote.service';
 import { FormsModule } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
+import { CurrentuserService } from '../currentuser.service';
 
 @Component({
   selector: 'app-login',
@@ -15,11 +16,13 @@ export class LoginComponent {
   username: string;
   password: string;
   remote:RemoteService;
+  currentUserService:CurrentuserService;
 
-  constructor(remote:RemoteService) {
+  constructor(remote:RemoteService, currentUserService:CurrentuserService) {
     this.username = "";
     this.password = "";
     this.remote = remote;
+    this.currentUserService = currentUserService;
   }
 
   submitLogin() {
@@ -32,7 +35,9 @@ export class LoginComponent {
     .subscribe({
       next: (data) => {
         alert("Login Successful!");
-        console.log(data)
+        let currentUser = data.body as User;
+        this.currentUserService.setUsername(currentUser.username);
+        this.currentUserService.setEmail(currentUser.email);
         this.remote.redirect('dashboard');
       },
       error: (error: HttpErrorResponse) => {
