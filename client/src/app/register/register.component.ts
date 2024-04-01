@@ -45,10 +45,11 @@ export class RegisterComponent {
     this.remote.registerUser(registerUserDto)
     .subscribe({
       next: (data) => {
-        alert("User registered");
+        alert("User registered!");
+        this.remote.redirect('login');
       },
       error: (error: HttpErrorResponse) => {
-        alert("Couldn't register")
+        alert("Couldn't register...")
         console.log(error.error)
       }
     })
