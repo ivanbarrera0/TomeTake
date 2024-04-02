@@ -39,3 +39,5 @@ z
 Jserver/src/main/java/com/example/demo/exception/AccessDeniedException.java,5\f\5feb7a7c8a8960eb693f847713f7296a1a83db9f
 z
 Jserver/src/main/java/com/example/demo/exception/UserNotFoundException.java,f\f\ff7fef7cef6dd540ad9d7e5b975e6cebef7bc4df
+l
+<server/src/main/java/com/example/demo/entities/Checkout.java,2\7\271fef7c355d6ad6abd91a99c096056d40b2a8fe

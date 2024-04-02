@@ -5,6 +5,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { BrowsebookComponent } from './browsebook/browsebook.component';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     NavbarComponent, 
     LoginComponent, 
     RegisterComponent,
-  DashboardComponent],
+    DashboardComponent,
+    BrowsebookComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

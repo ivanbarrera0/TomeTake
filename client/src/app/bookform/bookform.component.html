@@ -1,0 +1,31 @@
+<h1>Book Form</h1>
+<br>
+<label>Title: </label>
+<br>
+<input type="text" id="title" [(ngModel)]="title"> 
+<br>
+<label>Author: </label>
+<br>
+<input type="text" id="author" [(ngModel)]="author">
+<br>
+<label>Genre: </label>
+<br>
+<input type="text" id="genre" [(ngModel)]="genre">
+<br>
+<label>Description: </label>
+<br>
+<input type="text" id="description" [(ngModel)]="description">
+<br>
+<label>Publication Year: </label>
+<br>
+<input type="text" id="publicationYear" [(ngModel)]="publicationYear">
+<br>
+<label>Quantity: </label> 
+<br>
+<input type="number" id="quantity" [(ngModel)]="quantity">
+<br>
+<label>Number of Pages: </label>
+<br>
+<input type="number" id="numberOfPages" [(ngModel)]="numberOfPages">
+<br>
+<button (click)="addBook()">Add Book</button>

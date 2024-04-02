@@ -27,9 +27,8 @@ public class AuthController {
         return authService.registerUser(registerUserDto);
     }
 
-    @GetMapping(path = "/login/auth")
+    @PostMapping(path = "/login/auth")
     public User loginUser(@RequestBody Auth auth) throws AccessDeniedException, UserNotFoundException {
-        System.out.println(auth.getUsername() + "---" + auth.getPassword());
         return authService.findUserByUsername(auth.getUsername(), auth.getPassword());
     }
 

@@ -39,7 +39,17 @@ export class RemoteService {
       })
     }
     )
-  } 
+  }
+  
+  addBook(book:Book): Observable<HttpResponse<Object>> {
+    return this.httpClient.post(this.baseURL + "/addBook", JSON.stringify(book), {
+      observe:'response',
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    })
+  }
 
   redirect(url:string) {
     this.router.navigate([url]);
@@ -49,6 +59,7 @@ export class RemoteService {
 export interface Book {
   title:string;
   quantity:number;
+  numberOfPages:number;
   author:string;
   genre:string;
   description:string;
@@ -59,6 +70,9 @@ export interface RegisterUserDto {
   user:User;
   auth:Auth;
 }
+
+// TODO: Change the checkoutList from a book[] to a checkout[]
+
 
 export interface User {
     username:string;

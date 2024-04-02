@@ -21,23 +21,21 @@ public class User {
     private String email;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
-    @JsonManagedReference
-    private List<Book> checkoutList;
+    @JsonManagedReference("checkout-user")
+    private List<Checkout> checkoutList;
 
     public User() {
     }
 
-    public User(String username, String email, List<Book> checkoutList) {
+    public User(String username, String email) {
         this.username = username;
         this.email = email;
-        this.checkoutList = checkoutList;
     }
 
-    public User(int id, String username, String email, List<Book> checkoutList) {
+    public User(int id, String username, String email) {
         this.id = id;
         this.username = username;
         this.email = email;
-        this.checkoutList = checkoutList;
     }
 
     public int getId() {
@@ -64,11 +62,11 @@ public class User {
         this.email = email;
     }
 
-    public List<Book> getCheckoutList() {
+    public List<Checkout> getCheckoutList() {
         return checkoutList;
     }
 
-    public void setCheckoutList(List<Book> checkoutList) {
+    public void setCheckoutList(List<Checkout> checkoutList) {
         this.checkoutList = checkoutList;
     }
 

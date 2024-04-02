@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+//@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 @CrossOrigin
 public class BookController {
 
@@ -17,9 +18,9 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @PostMapping(path = "/register/book")
+    @PostMapping(path = "/addBook")
     @ResponseStatus(HttpStatus.OK)
-    public Book registerBook(@RequestBody Book book) {
+    public Book addBook(@RequestBody Book book) {
         return bookService.saveOrUpdate(book);
     }
 }

@@ -1,8 +1,9 @@
 package com.example.demo.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity(name = "books")
@@ -20,6 +21,9 @@ public class Book {
     private int quantity;
 
     @Column
+    private int numberOfPages;
+
+    @Column
     private String author;
 
     @Column
@@ -31,56 +35,57 @@ public class Book {
     @Column
     private String publicationYear;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    @JsonBackReference
-    private User user;
+    @OneToMany(mappedBy = "book", cascade = CascadeType.PERSIST)
+    @JsonManagedReference("checkout-book")
+    private List<Checkout> checkoutList;
 
     // Can work to add the image of a book later
-    // Need to set the user of the book
-
 
     public Book() {
     }
 
-    public Book(String title, int quantity, String author, String genre, String description, String publicationYear) {
+    public Book(String title, int quantity, int numberOfPages, String author, String genre, String description, String publicationYear) {
         this.title = title;
         this.quantity = quantity;
+        this.numberOfPages = numberOfPages;
         this.author = author;
         this.genre = genre;
         this.description = description;
         this.publicationYear = publicationYear;
     }
 
-    public Book(int id, String title, int quantity, String author, String genre, String description, String publicationYear) {
+    public Book(String title, int quantity, int numberOfPages, String author, String genre, String description, String publicationYear, List<Checkout> checkoutList) {
+        this.title = title;
+        this.quantity = quantity;
+        this.numberOfPages = numberOfPages;
+        this.author = author;
+        this.genre = genre;
+        this.description = description;
+        this.publicationYear = publicationYear;
+        this.checkoutList = checkoutList;
+    }
+
+    public Book(int id, String title, int quantity, int numberOfPages, String author, String genre, String description, String publicationYear) {
         this.id = id;
         this.title = title;
         this.quantity = quantity;
+        this.numberOfPages = numberOfPages;
         this.author = author;
         this.genre = genre;
         this.description = description;
         this.publicationYear = publicationYear;
     }
 
-    public Book(String title, int quantity, String author, String genre, String description, String publicationYear, User user) {
-        this.title = title;
-        this.quantity = quantity;
-        this.author = author;
-        this.genre = genre;
-        this.description = description;
-        this.publicationYear = publicationYear;
-        this.user = user;
-    }
-
-    public Book(int id, String title, int quantity, String author, String genre, String description, String publicationYear, User user) {
+    public Book(int id, String title, int quantity, int numberOfPages, String author, String genre, String description, String publicationYear, List<Checkout> checkoutList) {
         this.id = id;
         this.title = title;
         this.quantity = quantity;
+        this.numberOfPages = numberOfPages;
         this.author = author;
         this.genre = genre;
         this.description = description;
         this.publicationYear = publicationYear;
-        this.user = user;
+        this.checkoutList = checkoutList;
     }
 
     public int getId() {
@@ -115,14 +120,6 @@ public class Book {
         this.author = author;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public String getGenre() {
         return genre;
     }
@@ -147,19 +144,36 @@ public class Book {
         this.publicationYear = publicationYear;
     }
 
+    public int getNumberOfPages() {
+        return numberOfPages;
+    }
+
+    public void setNumberOfPages(int numberOfPages) {
+        this.numberOfPages = numberOfPages;
+    }
+
+    public List<Checkout> getCheckoutList() {
+        return checkoutList;
+    }
+
+    public void setCheckoutList(List<Checkout> checkoutList) {
+        this.checkoutList = checkoutList;
+    }
+
     // It would be a good step to check that books do not have the same title and author
     // instead of checking for all attributes
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return id == book.id && quantity == book.quantity && Objects.equals(title, book.title) && Objects.equals(author, book.author) && Objects.equals(genre, book.genre) && Objects.equals(description, book.description) && Objects.equals(publicationYear, book.publicationYear);
+        return id == book.id && quantity == book.quantity && numberOfPages == book.numberOfPages && Objects.equals(title, book.title) && Objects.equals(author, book.author) && Objects.equals(genre, book.genre) && Objects.equals(description, book.description) && Objects.equals(publicationYear, book.publicationYear) && Objects.equals(checkoutList, book.checkoutList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, quantity, author, genre, description, publicationYear);
+        return Objects.hash(id, title, quantity, numberOfPages, author, genre, description, publicationYear, checkoutList);
     }
 
     @Override
@@ -168,11 +182,11 @@ public class Book {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", quantity=" + quantity +
+                ", numberOfPages=" + numberOfPages +
                 ", author='" + author + '\'' +
                 ", genre='" + genre + '\'' +
                 ", description='" + description + '\'' +
                 ", publicationYear='" + publicationYear + '\'' +
-                ", user=" + user +
                 '}';
     }
 }

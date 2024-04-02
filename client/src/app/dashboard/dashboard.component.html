@@ -2,6 +2,10 @@
 <br>
 <h1>Your Email: {{currentUserService.getEmail()}}</h1>
 <br>
-<p>Link</p>
+<nav>
+<a routerLink="browsebook">Browse Books</a>
 <br>
-<p>Link</p>
+<a routerLink="bookform">Add Book</a>
+</nav>
+<router-outlet></router-outlet>
+
