@@ -7,10 +7,12 @@ export class CurrentuserService {
 
   username: string;
   email: string;
+  isPublisher:boolean;
 
   constructor() {
     this.username = "";
     this.email = "";
+    this.isPublisher = false;
    }
 
    setUsername(username:string) {
@@ -27,5 +29,13 @@ export class CurrentuserService {
 
    getEmail():string {
     return this.email;
+   }
+
+   setIsPublisher(isPublisher:boolean) {
+    this.isPublisher = isPublisher;
+   }
+
+   getIsPublisher():boolean {
+    return this.isPublisher;
    }
 }

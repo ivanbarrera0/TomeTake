@@ -20,6 +20,9 @@ public class User {
     @Column
     private String email;
 
+    @Column
+    private boolean isPublisher;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     @JsonManagedReference("checkout-user")
     private List<Checkout> checkoutList;
@@ -27,15 +30,17 @@ public class User {
     public User() {
     }
 
-    public User(String username, String email) {
-        this.username = username;
-        this.email = email;
-    }
-
-    public User(int id, String username, String email) {
+    public User(int id, String username, String email, boolean isPublisher) {
         this.id = id;
         this.username = username;
         this.email = email;
+        this.isPublisher = isPublisher;
+    }
+
+    public User(String username, String email, boolean isPublisher) {
+        this.username = username;
+        this.email = email;
+        this.isPublisher = isPublisher;
     }
 
     public int getId() {
@@ -62,6 +67,14 @@ public class User {
         this.email = email;
     }
 
+    public boolean getIsPublisher() {
+        return isPublisher;
+    }
+
+    public void setIsPublisher(boolean isPublisher) {
+        this.isPublisher = isPublisher;
+    }
+
     public List<Checkout> getCheckoutList() {
         return checkoutList;
     }
@@ -76,6 +89,7 @@ public class User {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
+                ", isPublisher=" + isPublisher +
                 '}';
     }
 }

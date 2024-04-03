@@ -38,6 +38,7 @@ export class LoginComponent {
         let currentUser = data.body as User;
         this.currentUserService.setUsername(currentUser.username);
         this.currentUserService.setEmail(currentUser.email);
+        this.currentUserService.setIsPublisher(currentUser.isPublisher);
         this.remote.redirect('dashboard');
       },
       error: (error: HttpErrorResponse) => {

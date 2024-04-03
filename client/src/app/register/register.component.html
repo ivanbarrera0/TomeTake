@@ -12,4 +12,7 @@
 <br>
 <input type="text" id="password" [(ngModel)]="password">
 <br>
+<label>Are you a publisher? </label>
+<input type="checkbox" id="isPublisher" [(ngModel)]="isPublisher">
+<br>
 <button (click)="registerUser()" *ngIf="username != '' && email != '' && password != ''">Submit!</button>

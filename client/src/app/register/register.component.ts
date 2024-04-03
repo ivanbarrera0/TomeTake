@@ -16,7 +16,7 @@ export class RegisterComponent {
   username:string;
   email:string;
   password:string;
-  checkoutList: Book[];
+  isPublisher:boolean;
   remote:RemoteService;
 
   constructor(remote:RemoteService) {
@@ -24,7 +24,7 @@ export class RegisterComponent {
     this.username = "";
     this.email = "";
     this.password = "";
-    this.checkoutList = [];
+    this.isPublisher = false;
   }
 
   registerUser() {
@@ -34,7 +34,7 @@ export class RegisterComponent {
       user: {
         username: this.username,
         email: this.email,
-        checkoutList: this.checkoutList
+        isPublisher: this.isPublisher
       },
       auth: {
         username: this.username,

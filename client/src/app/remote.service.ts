@@ -77,7 +77,7 @@ export interface RegisterUserDto {
 export interface User {
     username:string;
     email:string;
-    checkoutList:Book[];
+    isPublisher:boolean;
 }
 
 export interface Auth {
