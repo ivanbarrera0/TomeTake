@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -44,6 +44,19 @@ export class RemoteService {
   addBook(book:Book): Observable<HttpResponse<Object>> {
     return this.httpClient.post(this.baseURL + "/addBook", JSON.stringify(book), {
       observe:'response',
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    })
+  }
+
+  retrieveBooksByGenre(genre:string): Observable<any> {
+
+    let queryParams = new HttpParams().append('genre', genre);
+
+    return this.httpClient.get(this.baseURL + "/retrieveBooks", {
+      params: queryParams,
       withCredentials: true,
       headers: new HttpHeaders({
         'Content-Type': 'application/json'

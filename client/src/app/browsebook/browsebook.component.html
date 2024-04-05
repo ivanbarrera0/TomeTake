@@ -1,1 +1,20 @@
-<p>browsebook works!</p>
+<h1>Browse our amazin books</h1>
+<br>
+<label>Search: </label>
+<input type="text" id="browseGenre" [(ngModel)]="browseGenre">
+<button (click)="retrieveBooks()">Browse</button>
+<br>
+<br>
+
+<div *ngIf="hasBeenClicked">
+
+    <div *ngFor="let book of bookList">
+    <h3>Title: {{book.title}}</h3>
+    <p>Author: {{book.author}}</p>
+    <p>Genre: {{book.genre}}</p>
+    <p>Description: {{book.description}}</p>
+    <p>Publication Year: {{book.publicationYear}}</p>
+    <p>Quantity: {{book.quantity}}</p>
+    <p>Page Count: {{book.numberOfPages}}</p>
+    </div>
+</div>
