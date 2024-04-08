@@ -4,6 +4,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { CurrentbookService } from '../currentbook.service';
 
 @Component({
   selector: 'app-browsebook',
@@ -16,14 +17,16 @@ export class BrowsebookComponent {
 
   bookList:Book[];
   remote:RemoteService;
+  currentBook:CurrentbookService;
   browseGenre:string;
   hasBeenClicked:boolean;
 
-  constructor(remote:RemoteService) {
+  constructor(remote:RemoteService, currentBook:CurrentbookService) {
     this.bookList = [];
     this.remote = remote;
     this.browseGenre = "";
     this.hasBeenClicked = false;
+    this.currentBook = currentBook;
   }
 
   retrieveBooks() {
@@ -42,5 +45,10 @@ export class BrowsebookComponent {
         console.log(error);
       }
     }) 
+  }
+
+  showBookView(book:Book) {
+    this.currentBook.setCurrentBook(book);
+    this.remote.redirect('/bookview');
   }
 }

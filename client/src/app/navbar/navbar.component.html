@@ -1,6 +1,6 @@
 <hr>
 <nav>
     <a routerLink="login" id="login">Login</a> | <a routerLink="register" id="register">Register</a> 
-    <a *ngIf="currentUserService.isPublisher" routerLink="dashboard/bookform" id="bookform">  |  Add Book</a>
+    <a *ngIf="currentUserService.isPublisher" routerLink="/bookform" id="bookform">  |  Add Book</a>
 </nav>
 <router-outlet></router-outlet>

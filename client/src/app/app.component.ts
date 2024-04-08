@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowsebookComponent } from './browsebook/browsebook.component';
+import { BookviewComponent } from './bookview/bookview.component';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,8 @@ import { BrowsebookComponent } from './browsebook/browsebook.component';
     LoginComponent, 
     RegisterComponent,
     DashboardComponent,
-    BrowsebookComponent],
+    BrowsebookComponent,
+    BookviewComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
