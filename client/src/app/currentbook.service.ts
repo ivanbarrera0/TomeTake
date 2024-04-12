@@ -6,6 +6,7 @@ import { Book } from './remote.service';
 })
 export class CurrentbookService {
 
+  id?:number;
   title:string;
   author:string;
   genre:string;
@@ -15,6 +16,7 @@ export class CurrentbookService {
   numberOfPages:number;
 
   constructor() { 
+    this.id = 0;
     this.title = "";
     this.author = "";
     this.genre = "";
@@ -25,6 +27,7 @@ export class CurrentbookService {
   }
 
   setCurrentBook(book:Book) {
+    this.id = book.id;
     this.title = book.title;
     this.author = book.author;
     this.genre = book.genre;
@@ -37,6 +40,7 @@ export class CurrentbookService {
   getCurrentBook() : Book {
 
     let book:Book = {
+      id: this.id,
       title: this.title,
       author: this.author,
       genre: this.genre,

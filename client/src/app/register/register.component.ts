@@ -50,7 +50,7 @@ export class RegisterComponent {
       },
       error: (error: HttpErrorResponse) => {
         alert("Couldn't register...")
-        console.log(error.error)
+        console.log(error.error);
       }
     })
   }

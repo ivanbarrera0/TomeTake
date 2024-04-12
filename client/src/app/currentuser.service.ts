@@ -5,14 +5,24 @@ import { Injectable } from '@angular/core';
 })
 export class CurrentuserService {
 
+  id?: number | undefined;
   username: string;
   email: string;
   isPublisher:boolean;
 
   constructor() {
+    this.id = 0;
     this.username = "";
     this.email = "";
     this.isPublisher = false;
+   }
+
+   setUserId(userId: number | undefined) {
+    this.id = userId;
+   }
+
+   getUserId():number | undefined {
+    return this.id;
    }
 
    setUsername(username:string) {
