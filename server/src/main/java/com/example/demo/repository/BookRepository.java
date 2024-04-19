@@ -15,4 +15,10 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     @Query(value = "SELECT * FROM books WHERE genre = ?1", nativeQuery = true)
     public List<Book> findBookByGenre(String genre);
+
+    @Query(value = "SELECT books.* FROM books " +
+            "JOIN checkout ON books.book_id = checkout.book_id " +
+            "JOIN users ON checkout.user_id = users.user_id " +
+            "WHERE users.user_id = ?1", nativeQuery = true)
+    public List<Book> retrieveCheckedOutBooksByUserId(int id);
 }

@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowsebookComponent } from './browsebook/browsebook.component';
 import { BookformComponent } from './bookform/bookform.component';
 import { BookviewComponent } from './bookview/bookview.component';
+import { CheckedoutbooksComponent } from './checkedoutbooks/checkedoutbooks.component';
 
 export const routes: Routes = 
 [{path:"login", component: LoginComponent}, 
@@ -12,4 +13,5 @@ export const routes: Routes =
 {path:"dashboard", component: DashboardComponent},
 {path: "browsebook", component: BrowsebookComponent},
 {path: "bookform", component: BookformComponent},
-{path: "bookview", component: BookviewComponent}];
+{path: "bookview", component: BookviewComponent},
+{path: "checkedoutbooks", component: CheckedoutbooksComponent}];

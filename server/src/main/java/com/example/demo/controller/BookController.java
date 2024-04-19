@@ -31,4 +31,10 @@ public class BookController {
     public List<Book> retrieveListofBooks(@RequestParam String genre) {
         return bookService.listOfBooksByGenre(genre);
     }
+
+    @GetMapping(path = "/retrieveCheckedOutBooks")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Book> retrieveListOfCheckedOutBooks(@RequestParam int id) {
+        return bookService.retrieveCheckedOutBooksByUserId(id);
+    }
 }

@@ -28,4 +28,8 @@ public class BookService {
     public List<Book> listOfBooksByGenre(String genre) {
         return bookRepository.findBookByGenre(genre);
     }
+
+    public List<Book> retrieveCheckedOutBooksByUserId(int id) {
+        return bookRepository.retrieveCheckedOutBooksByUserId(id);
+    }
 }

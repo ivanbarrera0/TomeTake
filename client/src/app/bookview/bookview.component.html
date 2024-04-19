@@ -6,7 +6,14 @@
 <p>Quantity: {{book.quantity}}</p>
 <p>Pages: {{book.numberOfPages}}</p>
 <br>
-<button (click)="checkoutBook()">Checkout Book</button>
+
+<div *ngIf="book.quantity > 0; else elseBlock">
+    <button (click)="checkoutBook()">Checkout Book</button>
+</div>
+<ng-template #elseBlock>
+    <label>Sold Out</label>
+</ng-template>
+
 
 <br>
 <br>

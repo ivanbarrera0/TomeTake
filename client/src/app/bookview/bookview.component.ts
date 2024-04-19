@@ -4,11 +4,12 @@ import { Book, RemoteService } from '../remote.service';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { CurrentuserService } from '../currentuser.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-bookview',
   standalone: true,
-  imports: [RouterLink, RouterOutlet],
+  imports: [RouterLink, RouterOutlet, CommonModule],
   templateUrl: './bookview.component.html',
   styleUrl: './bookview.component.css'
 })

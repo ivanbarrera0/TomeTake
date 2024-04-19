@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowsebookComponent } from './browsebook/browsebook.component';
 import { BookviewComponent } from './bookview/bookview.component';
+import { CheckedoutbooksComponent } from './checkedoutbooks/checkedoutbooks.component';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,8 @@ import { BookviewComponent } from './bookview/bookview.component';
     RegisterComponent,
     DashboardComponent,
     BrowsebookComponent,
-    BookviewComponent],
+    BookviewComponent, 
+    CheckedoutbooksComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

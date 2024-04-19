@@ -74,6 +74,19 @@ export class RemoteService {
     })
   }
 
+  retrieveCheckoutList(id:number): Observable<any> {
+
+    let queryParams = new HttpParams().append('id', id);
+
+    return this.httpClient.get(this.baseURL + "/retrieveCheckedOutBooks", {
+      params: queryParams,
+      withCredentials:true,
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    })
+  }
+
   redirect(url:string) {
     this.router.navigate([url]);
   }
@@ -94,9 +107,6 @@ export interface RegisterUserDto {
   user:User;
   auth:Auth;
 }
-
-// TODO: Change the checkoutList from a book[] to a checkout[]
-
 
 export interface User {
     id?:number
