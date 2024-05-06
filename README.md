@@ -1,7 +1,7 @@
-### TomeTake
-# This project was created to simulate a website where users would be able to register and check out books.
+# TomeTake
+## This project was created to simulate a website where users would be able to register and check out books.
 
-# Features include:
+### Features include:
 - Users being able to register and log themselves in, users can also indicate if they are an author
 - Authors are given access to adding new books with a book form
 - Once logged in users are redirected to their dashboard where they can navigate throughtout the application
