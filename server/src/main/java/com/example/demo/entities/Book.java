@@ -3,6 +3,7 @@ package com.example.demo.entities;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -35,6 +36,9 @@ public class Book {
     @Column
     private String publicationYear;
 
+    @Lob
+    private byte[] image;
+
     @OneToMany(mappedBy = "book", cascade = CascadeType.PERSIST)
     @JsonManagedReference("checkout-book")
     private List<Checkout> checkoutList;
@@ -44,7 +48,7 @@ public class Book {
     public Book() {
     }
 
-    public Book(String title, int quantity, int numberOfPages, String author, String genre, String description, String publicationYear) {
+    public Book(String title, int quantity, int numberOfPages, String author, String genre, String description, String publicationYear, byte[] image) {
         this.title = title;
         this.quantity = quantity;
         this.numberOfPages = numberOfPages;
@@ -52,9 +56,10 @@ public class Book {
         this.genre = genre;
         this.description = description;
         this.publicationYear = publicationYear;
+        this.image = image;
     }
 
-    public Book(String title, int quantity, int numberOfPages, String author, String genre, String description, String publicationYear, List<Checkout> checkoutList) {
+    public Book(String title, int quantity, int numberOfPages, String author, String genre, String description, String publicationYear, byte[] image, List<Checkout> checkoutList) {
         this.title = title;
         this.quantity = quantity;
         this.numberOfPages = numberOfPages;
@@ -62,10 +67,11 @@ public class Book {
         this.genre = genre;
         this.description = description;
         this.publicationYear = publicationYear;
+        this.image = image;
         this.checkoutList = checkoutList;
     }
 
-    public Book(int id, String title, int quantity, int numberOfPages, String author, String genre, String description, String publicationYear) {
+    public Book(int id, String title, int quantity, int numberOfPages, String author, String genre, String description, String publicationYear, byte[] image) {
         this.id = id;
         this.title = title;
         this.quantity = quantity;
@@ -74,9 +80,10 @@ public class Book {
         this.genre = genre;
         this.description = description;
         this.publicationYear = publicationYear;
+        this.image = image;
     }
 
-    public Book(int id, String title, int quantity, int numberOfPages, String author, String genre, String description, String publicationYear, List<Checkout> checkoutList) {
+    public Book(int id, String title, int quantity, int numberOfPages, String author, String genre, String description, String publicationYear, byte[] image, List<Checkout> checkoutList) {
         this.id = id;
         this.title = title;
         this.quantity = quantity;
@@ -86,6 +93,7 @@ public class Book {
         this.description = description;
         this.publicationYear = publicationYear;
         this.checkoutList = checkoutList;
+        this.image = image;
     }
 
     public int getId() {
@@ -152,6 +160,14 @@ public class Book {
         this.numberOfPages = numberOfPages;
     }
 
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
     public List<Checkout> getCheckoutList() {
         return checkoutList;
     }
@@ -163,17 +179,20 @@ public class Book {
     // It would be a good step to check that books do not have the same title and author
     // instead of checking for all attributes
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return id == book.id && quantity == book.quantity && numberOfPages == book.numberOfPages && Objects.equals(title, book.title) && Objects.equals(author, book.author) && Objects.equals(genre, book.genre) && Objects.equals(description, book.description) && Objects.equals(publicationYear, book.publicationYear) && Objects.equals(checkoutList, book.checkoutList);
+        return id == book.id && quantity == book.quantity && numberOfPages == book.numberOfPages && Objects.equals(title, book.title) && Objects.equals(author, book.author) && Objects.equals(genre, book.genre) && Objects.equals(description, book.description) && Objects.equals(publicationYear, book.publicationYear) && Arrays.equals(image, book.image) && Objects.equals(checkoutList, book.checkoutList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, quantity, numberOfPages, author, genre, description, publicationYear, checkoutList);
+        int result = Objects.hash(id, title, quantity, numberOfPages, author, genre, description, publicationYear, checkoutList);
+        result = 31 * result + Arrays.hashCode(image);
+        return result;
     }
 
     @Override

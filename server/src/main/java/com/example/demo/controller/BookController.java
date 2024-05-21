@@ -1,11 +1,14 @@
 package com.example.demo.controller;
 
 import com.example.demo.entities.Book;
+import com.example.demo.exception.InvalidImageException;
 import com.example.demo.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -21,8 +24,27 @@ public class BookController {
 
     @PostMapping(path = "/addBook")
     @ResponseStatus(HttpStatus.OK)
-    public Book addBook(@RequestBody Book book) {
-        return bookService.saveOrUpdate(book);
+    public Book addBook(@RequestParam String title, @RequestParam int quantity, @RequestParam int numberOfPages,
+                        @RequestParam String author, @RequestParam String genre, @RequestParam String description,
+                        @RequestParam String publicationYear, @RequestBody MultipartFile image) throws InvalidImageException {
+
+        try {
+
+            Book book = new Book();
+            book.setTitle(title);
+            book.setQuantity(quantity);
+            book.setAuthor(author);
+            book.setDescription(description);
+            book.setGenre(genre);
+            book.setNumberOfPages(numberOfPages);
+            book.setPublicationYear(publicationYear);
+            book.setImage(image.getBytes());
+
+            return bookService.saveOrUpdate(book);
+
+        } catch(IOException e) {
+            throw new InvalidImageException("Invalid Image");
+        }
     }
 
     // Get via genre
@@ -37,4 +59,8 @@ public class BookController {
     public List<Book> retrieveListOfCheckedOutBooks(@RequestParam int id) {
         return bookService.retrieveCheckedOutBooksByUserId(id);
     }
+
+    @ExceptionHandler(InvalidImageException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String exceptionHandler(InvalidImageException e) {return e.getMessage();}
 }

@@ -20,6 +20,8 @@ export class BookformComponent {
   quantity:number;
   numberOfPages:number;
   remote:RemoteService;
+  image:File | null = null;
+  //fd = new FormData();
 
   constructor(remote:RemoteService) {
     this.title = "";
@@ -32,7 +34,16 @@ export class BookformComponent {
     this.remote = remote;
   }
 
+  onFileSelected(event:any) {
+    console.log(event);
+    this.image = <File>event.target.files[0];
+    //this.fd.append('image', this.image!, this.image.name);
+  }
+
   addBook() {
+
+    //console.log(this.image);
+
     let book:Book = {
       title: this.title,
       author: this.author,
@@ -40,7 +51,8 @@ export class BookformComponent {
       description: this.description,
       publicationYear: this.publicationYear,
       quantity: this.quantity,
-      numberOfPages: this.numberOfPages
+      numberOfPages: this.numberOfPages,
+      image: this.image!
     }
 
     this.remote.addBook(book)

@@ -42,12 +42,18 @@ export class RemoteService {
   }
   
   addBook(book:Book): Observable<HttpResponse<Object>> {
-    return this.httpClient.post(this.baseURL + "/addBook", JSON.stringify(book), {
+
+    let queryParams = new HttpParams().append('title', book.title).append('quantity', book.quantity).append('numberOfPages', book.numberOfPages)
+    .append('author', book.author).append('genre', book.genre).append('description', book.description).append('publicationYear', book.publicationYear);
+
+    const fd = new FormData();
+    fd.append("image", book.image!);
+
+    return this.httpClient.post(this.baseURL + "/addBook", fd, {
+
+      params: queryParams,
       observe:'response',
       withCredentials: true,
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
     })
   }
 
@@ -101,6 +107,7 @@ export interface Book {
   genre:string;
   description:string;
   publicationYear:string;
+  image?:File;
 }
 
 export interface RegisterUserDto {
