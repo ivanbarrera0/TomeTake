@@ -44,7 +44,8 @@ export class RemoteService {
   addBook(book:Book): Observable<HttpResponse<Object>> {
 
     let queryParams = new HttpParams().append('title', book.title).append('quantity', book.quantity).append('numberOfPages', book.numberOfPages)
-    .append('author', book.author).append('genre', book.genre).append('description', book.description).append('publicationYear', book.publicationYear);
+    .append('author', book.author).append('genre', book.genre).append('description', book.description).append('publicationYear', book.publicationYear)
+    .append('imageType', book.imageType);
 
     const fd = new FormData();
     fd.append("image", book.image!);
@@ -93,6 +94,16 @@ export class RemoteService {
     })
   }
 
+  getImageSrc(imageType:string):string {
+
+    if(imageType === "image/png") {
+      return "data:image/png;base64,";
+    } else if(imageType === "image/jpeg") {
+      return "data:image/jpeg;base64,";
+    }
+    return ""; 
+  }
+
   redirect(url:string) {
     this.router.navigate([url]);
   }
@@ -108,6 +119,7 @@ export interface Book {
   description:string;
   publicationYear:string;
   image?:File;
+  imageType:string;
 }
 
 export interface RegisterUserDto {

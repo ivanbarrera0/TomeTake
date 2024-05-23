@@ -26,7 +26,8 @@ public class BookController {
     @ResponseStatus(HttpStatus.OK)
     public Book addBook(@RequestParam String title, @RequestParam int quantity, @RequestParam int numberOfPages,
                         @RequestParam String author, @RequestParam String genre, @RequestParam String description,
-                        @RequestParam String publicationYear, @RequestBody MultipartFile image) throws InvalidImageException {
+                        @RequestParam String publicationYear, @RequestParam String imageType,
+                        @RequestBody MultipartFile image) throws InvalidImageException {
 
         try {
 
@@ -38,6 +39,7 @@ public class BookController {
             book.setGenre(genre);
             book.setNumberOfPages(numberOfPages);
             book.setPublicationYear(publicationYear);
+            book.setImageType(imageType);
             book.setImage(image.getBytes());
 
             return bookService.saveOrUpdate(book);

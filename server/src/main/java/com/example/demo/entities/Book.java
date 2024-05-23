@@ -36,6 +36,9 @@ public class Book {
     @Column
     private String publicationYear;
 
+    @Column
+    private String imageType;
+
     @Lob
     private byte[] image;
 
@@ -48,7 +51,7 @@ public class Book {
     public Book() {
     }
 
-    public Book(String title, int quantity, int numberOfPages, String author, String genre, String description, String publicationYear, byte[] image) {
+    public Book(String title, int quantity, int numberOfPages, String author, String genre, String description, String publicationYear, String imageType, byte[] image) {
         this.title = title;
         this.quantity = quantity;
         this.numberOfPages = numberOfPages;
@@ -56,10 +59,11 @@ public class Book {
         this.genre = genre;
         this.description = description;
         this.publicationYear = publicationYear;
+        this.imageType = imageType;
         this.image = image;
     }
 
-    public Book(String title, int quantity, int numberOfPages, String author, String genre, String description, String publicationYear, byte[] image, List<Checkout> checkoutList) {
+    public Book(String title, int quantity, int numberOfPages, String author, String genre, String description, String publicationYear, String imageType,  byte[] image, List<Checkout> checkoutList) {
         this.title = title;
         this.quantity = quantity;
         this.numberOfPages = numberOfPages;
@@ -67,11 +71,12 @@ public class Book {
         this.genre = genre;
         this.description = description;
         this.publicationYear = publicationYear;
+        this.imageType = imageType;
         this.image = image;
         this.checkoutList = checkoutList;
     }
 
-    public Book(int id, String title, int quantity, int numberOfPages, String author, String genre, String description, String publicationYear, byte[] image) {
+    public Book(int id, String title, int quantity, int numberOfPages, String author, String genre, String description, String publicationYear, String imageType, byte[] image) {
         this.id = id;
         this.title = title;
         this.quantity = quantity;
@@ -80,10 +85,11 @@ public class Book {
         this.genre = genre;
         this.description = description;
         this.publicationYear = publicationYear;
+        this.imageType = imageType;
         this.image = image;
     }
 
-    public Book(int id, String title, int quantity, int numberOfPages, String author, String genre, String description, String publicationYear, byte[] image, List<Checkout> checkoutList) {
+    public Book(int id, String title, int quantity, int numberOfPages, String author, String genre, String description, String publicationYear, String imageType, byte[] image, List<Checkout> checkoutList) {
         this.id = id;
         this.title = title;
         this.quantity = quantity;
@@ -93,6 +99,7 @@ public class Book {
         this.description = description;
         this.publicationYear = publicationYear;
         this.checkoutList = checkoutList;
+        this.imageType = imageType;
         this.image = image;
     }
 
@@ -160,6 +167,14 @@ public class Book {
         this.numberOfPages = numberOfPages;
     }
 
+    public String getImageType() {
+        return imageType;
+    }
+
+    public void setImageType(String imageType) {
+        this.imageType = imageType;
+    }
+
     public byte[] getImage() {
         return image;
     }
@@ -185,12 +200,12 @@ public class Book {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return id == book.id && quantity == book.quantity && numberOfPages == book.numberOfPages && Objects.equals(title, book.title) && Objects.equals(author, book.author) && Objects.equals(genre, book.genre) && Objects.equals(description, book.description) && Objects.equals(publicationYear, book.publicationYear) && Arrays.equals(image, book.image) && Objects.equals(checkoutList, book.checkoutList);
+        return id == book.id && quantity == book.quantity && numberOfPages == book.numberOfPages && Objects.equals(title, book.title) && Objects.equals(author, book.author) && Objects.equals(genre, book.genre) && Objects.equals(description, book.description) && Objects.equals(publicationYear, book.publicationYear) && Objects.equals(imageType, book.imageType) && Arrays.equals(image, book.image) && Objects.equals(checkoutList, book.checkoutList);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(id, title, quantity, numberOfPages, author, genre, description, publicationYear, checkoutList);
+        int result = Objects.hash(id, title, quantity, numberOfPages, author, genre, description, publicationYear, imageType, checkoutList);
         result = 31 * result + Arrays.hashCode(image);
         return result;
     }
@@ -206,6 +221,9 @@ public class Book {
                 ", genre='" + genre + '\'' +
                 ", description='" + description + '\'' +
                 ", publicationYear='" + publicationYear + '\'' +
+                ", imageType='" + imageType + '\'' +
+                ", image=" + Arrays.toString(image) +
+                ", checkoutList=" + checkoutList +
                 '}';
     }
 }

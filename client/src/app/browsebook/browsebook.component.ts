@@ -47,6 +47,16 @@ export class BrowsebookComponent {
     }) 
   }
 
+  // getImageSrc(imageType:string):string {
+
+  //   if(imageType === "image/png") {
+  //     return "data:image/png;base64,";
+  //   } else if(imageType === "image/jpeg") {
+  //     return "data:image/jpeg;base64,";
+  //   }
+  //   return ""; 
+  // }
+
   showBookView(book:Book) {
     this.currentBook.setCurrentBook(book);
     this.remote.redirect('/bookview');

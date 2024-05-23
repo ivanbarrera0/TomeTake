@@ -14,6 +14,8 @@ export class CurrentbookService {
   publicationYear:string;
   quantity:number;
   numberOfPages:number;
+  imageType:string;
+  image:File | null;
 
   constructor() { 
     this.id = 0;
@@ -24,6 +26,8 @@ export class CurrentbookService {
     this.publicationYear = "";
     this.quantity = 0;
     this.numberOfPages = 0;
+    this.imageType = "";
+    this.image = null;
   }
 
   setCurrentBook(book:Book) {
@@ -35,6 +39,8 @@ export class CurrentbookService {
     this.publicationYear = book.publicationYear;
     this.quantity = book.quantity;
     this.numberOfPages = book.numberOfPages;
+    this.imageType = book.imageType;
+    this.image = book.image!;
   }
 
   getCurrentBook() : Book {
@@ -47,7 +53,9 @@ export class CurrentbookService {
       description: this.description,
       publicationYear: this.publicationYear,
       quantity: this.quantity,
-      numberOfPages: this.numberOfPages
+      numberOfPages: this.numberOfPages,
+      imageType: this.imageType,
+      image: this.image!
     }
 
     return book;

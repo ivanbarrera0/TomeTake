@@ -5,11 +5,12 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { CurrentuserService } from '../currentuser.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { BrowsebookComponent } from '../browsebook/browsebook.component';
 
 @Component({
   selector: 'app-bookview',
   standalone: true,
-  imports: [RouterLink, RouterOutlet, CommonModule],
+  imports: [RouterLink, RouterOutlet, CommonModule, BrowsebookComponent],
   templateUrl: './bookview.component.html',
   styleUrl: './bookview.component.css'
 })
@@ -47,7 +48,8 @@ export class BookviewComponent {
         description: this.book.description,
         publicationYear: this.book.publicationYear,
         quantity: this.book.quantity,
-        numberOfPages: this.book.numberOfPages
+        numberOfPages: this.book.numberOfPages,
+        imageType: this.book.imageType
       }
     }
 

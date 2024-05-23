@@ -21,7 +21,7 @@ export class BookformComponent {
   numberOfPages:number;
   remote:RemoteService;
   image:File | null = null;
-  //fd = new FormData();
+  imageType:string;
 
   constructor(remote:RemoteService) {
     this.title = "";
@@ -31,40 +31,51 @@ export class BookformComponent {
     this.publicationYear = "";
     this.quantity = 0;
     this.numberOfPages = 0;
+    this.imageType = "";
     this.remote = remote;
   }
 
   onFileSelected(event:any) {
     console.log(event);
     this.image = <File>event.target.files[0];
-    //this.fd.append('image', this.image!, this.image.name);
+
+    console.log(this.image.type);
+
+    this.imageType = this.image.type;
+    
+    if(this.image.size >= 1048576) {
+      alert("File size exceeds 1 MB limit");
+    }
   }
 
   addBook() {
 
-    //console.log(this.image);
+    console.log(this.imageType);
 
-    let book:Book = {
-      title: this.title,
-      author: this.author,
-      genre: this.genre,
-      description: this.description,
-      publicationYear: this.publicationYear,
-      quantity: this.quantity,
-      numberOfPages: this.numberOfPages,
-      image: this.image!
-    }
-
-    this.remote.addBook(book)
-    .subscribe({
-      next: (data) => {
-        alert("Book Successfully Added")
-        console.log(data)
-      },
-      error: (error:HttpErrorResponse) => {
-        alert("Couldn't add book...")
-        console.log(error)
+    if(this.image != null && this.image.size < 1048576) {
+      let book:Book = {
+        title: this.title,
+        author: this.author,
+        genre: this.genre,
+        description: this.description,
+        publicationYear: this.publicationYear,
+        quantity: this.quantity,
+        numberOfPages: this.numberOfPages,
+        imageType: this.imageType,
+        image: this.image!,
       }
-    })
+  
+      this.remote.addBook(book)
+      .subscribe({
+        next: (data) => {
+          alert("Book Successfully Added")
+          console.log(data)
+        },
+        error: (error:HttpErrorResponse) => {
+          alert("Couldn't add book...")
+          console.log(error)
+        }
+      })
+    }
   }
 }
