@@ -48,4 +48,11 @@ export class CurrentuserService {
    getIsPublisher():boolean {
     return this.isPublisher;
    }
+
+   clearCurrentUser() {
+    this.id = 0;
+    this.username = "";
+    this.email = "";
+    this.isPublisher = false;
+   }
 }

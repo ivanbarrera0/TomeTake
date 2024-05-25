@@ -22,6 +22,7 @@
             <p>Publication Year: {{book.publicationYear}}</p>
             <p>Quantity: {{book.quantity}}</p>
             <p>Pages: {{book.numberOfPages}}</p>
+            <img [src]="this.remote.getImageSrc(book.imageType) + book.image" alt="{{book.title}}" height="300" width="200">
             <br>
         </div>
     </ng-container>
@@ -35,6 +36,7 @@
             <p>Publication Year: {{book.publicationYear}}</p>
             <p>Quantity: {{book.quantity}}</p>
             <p>Pages: {{book.numberOfPages}}</p>
+            <img [src]="this.remote.getImageSrc(book.imageType) + book.image" alt="{{book.title}}" height="300" width="200">
             <br>
         </div>
     </ng-container>
@@ -48,6 +50,7 @@
             <p>Publication Year: {{book.publicationYear}}</p>
             <p>Quantity: {{book.quantity}}</p>
             <p>Pages: {{book.numberOfPages}}</p>
+            <img [src]="this.remote.getImageSrc(book.imageType) + book.image" alt="{{book.title}}" height="300" width="200">
             <br>
         </div>
     </ng-container>

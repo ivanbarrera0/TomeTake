@@ -1,6 +1,14 @@
 <hr>
 <nav>
     <a routerLink="login" id="login">Login</a> | <a routerLink="register" id="register">Register</a> 
-    <a *ngIf="currentUserService.isPublisher" routerLink="/bookform" id="bookform">  |  Add Book</a>
+
+    <ng-container *ngIf="currentUserService.isPublisher">
+        | <a routerLink="/bookform" id="bookform">Add Book</a>
+    </ng-container>
+
+    <ng-container *ngIf="currentUserService.getUsername() != ''">
+        | <a routerLink="/dashboard" id="dashboard">Dashboard</a>
+    </ng-container>
+
 </nav>
 <router-outlet></router-outlet>

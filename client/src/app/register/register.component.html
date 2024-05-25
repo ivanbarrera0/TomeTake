@@ -10,8 +10,18 @@
 <br>
 <label>Password:</label>
 <br>
-<input type="text" id="password" [(ngModel)]="password">
+<input type="password" id="password" [(ngModel)]="password" (blur)="this.passwordClick = true">
 <br>
+<ng-container *ngIf="this.password.length < 8 && this.passwordClick">
+    <p class="password">* Field must be at least 8 characters long</p>
+</ng-container>
+<label>Confirm Password: </label>
+<br>
+<input type="password" id="confirmPassword" [(ngModel)]="confirmPassword" (blur)="this.confirmPasswordClick = true">
+<br>
+<ng-container *ngIf="this.confirmPassword.length < 8 && this.confirmPasswordClick">
+    <p class="password">* Field must have at least 8 characters long</p>
+</ng-container>
 <label>Are you a publisher? </label>
 <input type="checkbox" id="isPublisher" [(ngModel)]="isPublisher">
 <br>
