@@ -32,6 +32,14 @@ public class BookService {
         return bookRepository.findBookByGenre(genre);
     }
 
+    public List<Book> listOfBooksByKeyword(String keyword) {
+        return bookRepository.findBookByKeyword(keyword);
+    }
+
+    public List<Book> listofBooksByKeywordAndGenre(String keyword, String genre) {
+        return bookRepository.findBookByKeywordAndGenre(keyword, genre);
+    }
+
     public List<Book> retrieveCheckedOutBooksByUserId(int id) {
         return bookRepository.retrieveCheckedOutBooksByUserId(id);
     }

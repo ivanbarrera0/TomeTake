@@ -1,19 +1,39 @@
 <h1>Browse our amazing books</h1>
 <br>
-<label>Search: </label>
-<input type="text" id="browseGenre" [(ngModel)]="browseGenre" placeholder="Search TomeTake">
+<label>Genre: </label>
+<select [(ngModel)]="genre">
+    <option value="Adventure"></option>
+    <option value="Autobiography">Autobiography</option>
+    <option value="Biography">Biography</option>
+    <option value="Children's Literature">Children's Literature</option>
+    <option value="Classic Literature">Classic Literature</option>
+    <option value="Fantasy">Fantasy</option>
+    <option value="Horror">Horror</option>
+    <option value="Mystery">Mystery</option>
+    <option value="Non-Fiction">Non-Fiction</option>
+    <option value="Romance">Romance</option>
+</select>
+
+<input type="text" id="keyword" [(ngModel)]="keyword" placeholder="Search TomeTake">
 <button (click)="retrieveBooks()">Browse</button>
 <br>
 <br>
 
 <div *ngIf="hasBeenClicked">
 
-    <div *ngFor="let book of bookList">
-    <img [src]="this.remote.getImageSrc(book.imageType) + book.image" alt="{{book.title}}" height="300" width="200">
-    <h3 (click)="showBookView(book)" class="clickable">Title: {{book.title}}</h3>
-    <p>by {{book.author}}</p>
-    <br>
+
+    <div *ngIf="bookList.length > 0; else elseBlock">
+        <div *ngFor="let book of bookList">
+            <img [src]="this.remote.getImageSrc(book.imageType) + book.image" alt="{{book.title}}" height="200" width="200">
+            <h3 (click)="showBookView(book)" class="clickable">Title: {{book.title}}</h3>
+            <p>by {{book.author}}</p>
+            <br>
+        </div>
     </div>
+    <ng-template #elseBlock>
+        <p>Sorry, there is no results for your search.</p>
+    </ng-template>
+    
 </div>
 
 <br>

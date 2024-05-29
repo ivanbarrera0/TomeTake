@@ -18,13 +18,15 @@ export class BrowsebookComponent {
   bookList:Book[];
   remote:RemoteService;
   currentBook:CurrentbookService;
-  browseGenre:string;
+  genre:string;
+  keyword:string;
   hasBeenClicked:boolean;
 
   constructor(remote:RemoteService, currentBook:CurrentbookService) {
     this.bookList = [];
     this.remote = remote;
-    this.browseGenre = "";
+    this.genre = "";
+    this.keyword = "";
     this.hasBeenClicked = false;
     this.currentBook = currentBook;
   }
@@ -33,29 +35,46 @@ export class BrowsebookComponent {
 
     this.hasBeenClicked = true;
 
-    this.remote.retrieveBooksByGenre(this.browseGenre)
-    .subscribe({
-      next: (data) => {
-        console.log("Books retrieved!");
-        this.bookList = data;
-        console.log(this.bookList);
-      },
-      error: (error:HttpErrorResponse) => {
-        alert("Could not retrieve books...")
-        console.log(error);
-      }
-    }) 
+    // Change to the opposite so it makes sense
+
+    if(this.genre !== "" && this.keyword !== "") {
+      this.remote.retrieveBooksByKeywordAndGenre(this.keyword, this.genre)
+      .subscribe({
+        next: (data) => {
+          this.bookList = data;
+          console.log(this.bookList);
+        },
+        error: (error:HttpErrorResponse) => {
+          alert("Could not retrieve books...");
+          console.log(error);
+        }
+      })
+    } else if(this.keyword === "") {
+      this.remote.retrieveBooksByGenre(this.genre)
+      .subscribe({
+        next: (data) => {
+          this.bookList = data;
+          console.log(this.bookList);
+        },
+        error: (error: HttpErrorResponse) => {
+          alert("Could not retrieve books...")
+          console.log(error);
+        }
+      })
+    } else {
+      this.remote.retrieveBooksByKeyword(this.keyword)
+      .subscribe({
+        next: (data) => {
+          this.bookList = data;
+          console.log(this.bookList);
+        },
+        error: (error:HttpErrorResponse) => {
+          alert("Could not retrieve books...");
+          console.log(error);
+        }
+      })
+    }   
   }
-
-  // getImageSrc(imageType:string):string {
-
-  //   if(imageType === "image/png") {
-  //     return "data:image/png;base64,";
-  //   } else if(imageType === "image/jpeg") {
-  //     return "data:image/jpeg;base64,";
-  //   }
-  //   return ""; 
-  // }
 
   showBookView(book:Book) {
     this.currentBook.setCurrentBook(book);

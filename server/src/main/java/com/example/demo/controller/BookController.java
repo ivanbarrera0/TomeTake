@@ -56,6 +56,18 @@ public class BookController {
         return bookService.listOfBooksByGenre(genre);
     }
 
+    @GetMapping(path = "/retrieveBooks/keyword")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Book> retrieveListOfBooksByKeyword(@RequestParam String keyword) {
+        return bookService.listOfBooksByKeyword(keyword);
+    }
+
+    @GetMapping(path = "/retrieveBooks/keyword/genre")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Book> retrieveListOfBooksByKeywordAndGenre(@RequestParam String keyword, @RequestParam String genre) {
+        return bookService.listofBooksByKeywordAndGenre(keyword, genre);
+    }
+
     @GetMapping(path = "/retrieveCheckedOutBooks")
     @ResponseStatus(HttpStatus.OK)
     public List<Book> retrieveListOfCheckedOutBooks(@RequestParam int id) {

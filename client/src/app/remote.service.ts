@@ -71,6 +71,32 @@ export class RemoteService {
     })
   }
 
+  retrieveBooksByKeyword(keyword:string): Observable<any> {
+
+    let queryParams = new HttpParams().append('keyword', keyword);
+
+    return this.httpClient.get(this.baseURL + "/retrieveBooks/keyword", {
+      params: queryParams,
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    })
+  }
+
+  retrieveBooksByKeywordAndGenre(keyword:string, genre:string): Observable<any> {
+
+    let queryParams = new HttpParams().append('keyword', keyword).append('genre', genre);
+
+    return this.httpClient.get(this.baseURL + "/retrieveBooks/keyword/genre", {
+      params: queryParams,
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    })
+  }
+
   addCheckout(checkout:Checkout): Observable<HttpResponse<Object>> {
     return this.httpClient.post(this.baseURL + "/checkout/book", JSON.stringify(checkout), {
       observe:'response',

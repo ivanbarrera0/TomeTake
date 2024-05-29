@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { Book, RemoteService } from '../remote.service';
 import { FormsModule } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-bookform',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './bookform.component.html',
   styleUrl: './bookform.component.css'
 })
@@ -49,10 +50,8 @@ export class BookformComponent {
   }
 
   addBook() {
-
-    console.log(this.imageType);
-
-    if(this.image != null && this.image.size < 1048576) {
+    
+    if(this.validateBook()) {
       let book:Book = {
         title: this.title,
         author: this.author,
@@ -77,5 +76,34 @@ export class BookformComponent {
         }
       })
     }
+  }
+
+  validateBook():boolean {
+    if(this.title === "") {
+      alert("Please enter a title");
+      return false;
+    } else if(this.author === "") {
+      alert("Please enter an author");
+      return false;
+    } else if(this.genre === "") {
+      alert("Please enter a genre");
+      return false;
+    } else if(this.description === "") {
+      alert("Please enter a description");
+      return false;
+    } else if(this.publicationYear === "") {
+      alert("Please enter a publication year");
+      return false;
+    } else if(this.quantity <= 0) {
+      alert("Please enter a valid quantity");
+      return false;
+    } else if(this.numberOfPages <= 0) {
+      alert("Please enter a valid number of pages");
+      return false;
+    } else if(this.image == null || this.image.size > 1048576) {
+      alert("Image file is too large or was not uploaded");
+      return false;
+    }
+    return true;
   }
 }
