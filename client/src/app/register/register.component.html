@@ -25,4 +25,9 @@
 <label>Are you a publisher? </label>
 <input type="checkbox" id="isPublisher" [(ngModel)]="isPublisher">
 <br>
-<button (click)="registerUser()" *ngIf="username != '' && email != '' && password != ''">Submit!</button>
+<br>
+<button (click)="registerUser()">Submit!</button>
+<br>
+<br>
+<p>Already have a TomeTake Account?</p>
+<a routerLink="/login">Login</a>

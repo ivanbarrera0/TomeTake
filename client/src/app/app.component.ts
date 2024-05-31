@@ -8,6 +8,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowsebookComponent } from './browsebook/browsebook.component';
 import { BookviewComponent } from './bookview/bookview.component';
 import { CheckedoutbooksComponent } from './checkedoutbooks/checkedoutbooks.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,8 @@ import { CheckedoutbooksComponent } from './checkedoutbooks/checkedoutbooks.comp
     DashboardComponent,
     BrowsebookComponent,
     BookviewComponent, 
-    CheckedoutbooksComponent],
+    CheckedoutbooksComponent, 
+  PageNotFoundComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

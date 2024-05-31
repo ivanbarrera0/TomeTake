@@ -3,11 +3,13 @@ import { Auth, RemoteService, User } from '../remote.service';
 import { FormsModule } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CurrentuserService } from '../currentuser.service';
+import { AuthService } from '../auth.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -17,12 +19,14 @@ export class LoginComponent {
   password: string;
   remote:RemoteService;
   currentUserService:CurrentuserService;
+  authService:AuthService;
 
-  constructor(remote:RemoteService, currentUserService:CurrentuserService) {
+  constructor(remote:RemoteService, currentUserService:CurrentuserService, authService:AuthService) {
     this.username = "";
     this.password = "";
     this.remote = remote;
     this.currentUserService = currentUserService;
+    this.authService = authService;
   }
 
   submitLogin() {
@@ -40,6 +44,10 @@ export class LoginComponent {
         this.currentUserService.setUsername(currentUser.username);
         this.currentUserService.setEmail(currentUser.email);
         this.currentUserService.setIsPublisher(currentUser.isPublisher);
+        this.authService.login();
+        if(currentUser.isPublisher) {
+          this.authService.confirmIsPublisher();
+        }
         this.remote.redirect('dashboard');
       },
       error: (error: HttpErrorResponse) => {

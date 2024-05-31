@@ -6,12 +6,17 @@ import { BrowsebookComponent } from './browsebook/browsebook.component';
 import { BookformComponent } from './bookform/bookform.component';
 import { BookviewComponent } from './bookview/bookview.component';
 import { CheckedoutbooksComponent } from './checkedoutbooks/checkedoutbooks.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { authGuard } from './auth.guard';
+import { publisherGuard } from './publisher.guard';
 
 export const routes: Routes = 
-[{path:"login", component: LoginComponent}, 
+[{path: "", component: LoginComponent},
+{path:"login", component: LoginComponent}, 
 {path:"register", component: RegisterComponent},
-{path:"dashboard", component: DashboardComponent},
-{path: "browsebook", component: BrowsebookComponent},
-{path: "bookform", component: BookformComponent},
-{path: "bookview", component: BookviewComponent},
-{path: "checkedoutbooks", component: CheckedoutbooksComponent}];
+{path:"dashboard", component: DashboardComponent, canActivate: [authGuard]},
+{path: "browsebook", component: BrowsebookComponent, canActivate: [authGuard]},
+{path: "bookform", component: BookformComponent, canActivate: [authGuard, publisherGuard]},
+{path: "bookview", component: BookviewComponent, canActivate: [authGuard]},
+{path: "checkedoutbooks", component: CheckedoutbooksComponent, canActivate: [authGuard]},
+{path: "**", component: PageNotFoundComponent}];

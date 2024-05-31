@@ -3,11 +3,12 @@ import { FormsModule } from '@angular/forms';
 import { RegisterUserDto, Book, RemoteService } from '../remote.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, RouterLink],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -36,7 +37,10 @@ export class RegisterComponent {
   registerUser() {
     console.log("Submitting registration..")
 
-    if(this.confirmPassword !== this.password) {
+    if(this.username === '' || this.email === '' || this.password === '' || this.confirmPassword === '') {
+      alert("One or more fields are blank!");
+    }
+    else if(this.confirmPassword !== this.password) {
       alert("Password and Confirm Password are different");
     } else {
       let registerUserDto: RegisterUserDto = {
