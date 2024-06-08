@@ -32,7 +32,7 @@ public class AuthService {
 
     public User registerUser(RegisterUserDto registerUserDto) throws DuplicateUsernameException {
 
-        userService.findUserByUsername(registerUserDto.getUser().getUsername());
+        userService.checkIfUserExistsByUsername(registerUserDto.getUser().getUsername());
 
         registerUserDto.getAuth().setPassword(this.hash(registerUserDto.getAuth().getPassword()));
         authRepository.save(registerUserDto.getAuth());
@@ -57,7 +57,6 @@ public class AuthService {
         }
         else {throw new UserNotFoundException("Username or Password is incorrect!");}
     }
-
 
     public String hash(String text) {
         String salt = BCrypt.gensalt(12);

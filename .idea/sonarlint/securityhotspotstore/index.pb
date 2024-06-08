@@ -47,3 +47,9 @@ r
 Bserver/src/main/java/com/example/demo/service/CheckoutService.java,1\c\1caa452e1d48fdfa69f7362789777632c216ea40
 x
 Hserver/src/main/java/com/example/demo/controller/CheckoutController.java,8\9\89aec457c1599a0c9f601870572c3715f6ef2a68
+r
+Bserver/src/main/java/com/example/demo/security/SecurityConfig.java,1\a\1a8bcd740b15ab19a74175ffc7c7478f82bfe139
+‚
+Rserver/src/main/java/com/example/demo/security/CustomAuthenticationEntryPoint.java,8\6\86a8ce55cdbd22b46f38578da620bb4172f1d99d
+r
+Bserver/src/main/java/com/example/demo/service/UserAuthService.java,2\2\227ecf75c0be2155a9f81726fb039aa16cff54ac

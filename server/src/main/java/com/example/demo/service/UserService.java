@@ -20,7 +20,7 @@ public class UserService {
 
     public User saveOrUpdate(User user) throws DuplicateUsernameException {
 
-        findUserByUsername(user.getUsername());
+        checkIfUserExistsByUsername(user.getUsername());
 
         return userRepository.save(user);
     }
@@ -29,7 +29,7 @@ public class UserService {
         return userRepository.findUserById(id);
     }
 
-    public void findUserByUsername(String username) throws DuplicateUsernameException {
+    public void checkIfUserExistsByUsername(String username) throws DuplicateUsernameException {
 
         Optional<User> foundUser = userRepository.findUserByUsername(username);
 
