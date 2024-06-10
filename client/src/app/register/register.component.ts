@@ -40,8 +40,11 @@ export class RegisterComponent {
     if(this.username === '' || this.email === '' || this.password === '' || this.confirmPassword === '') {
       alert("One or more fields are blank!");
     }
+    else if(!this.validateEmail(this.email)) {
+      alert("Please enter a valid email!")
+    }
     else if(this.confirmPassword !== this.password) {
-      alert("Password and Confirm Password are different");
+      alert("Password and Confirm Password are different!");
     } else {
       let registerUserDto: RegisterUserDto = {
         user: {
@@ -67,5 +70,16 @@ export class RegisterComponent {
         }
       })
     }
+  }
+
+  validateEmail(email:string):boolean {
+
+    if(!email.includes("@") || email.indexOf("@") !== email.lastIndexOf("@")) {
+      return false;
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.(com|net|org|edu|gov|mil|us|uk|ca|au|de|fr|jp|cn|in)$/i;
+
+    return emailPattern.test(email);
   }
 }
