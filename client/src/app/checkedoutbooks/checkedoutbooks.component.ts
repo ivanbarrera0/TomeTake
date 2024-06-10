@@ -38,8 +38,6 @@ export class CheckedoutbooksComponent {
 
   retrieveCheckedOutBooks() {
 
-    console.log(this.sortBy);
-
     this.id = this.currentUser.getUserId();
 
     const user_id = this.id || 0;
@@ -60,16 +58,6 @@ export class CheckedoutbooksComponent {
           if(a.publicationYear > b.publicationYear) return 1;
           return 0;
         });
-
-        console.log("------------");
-
-        console.log("Books by Title");
-
-        console.log(this.booksByTitle);
-
-        console.log("Books by Publication Year")
-
-        console.log(this.booksByPublicationYear);
       },
       error: (error:HttpErrorResponse) => {
         console.log(error.error);

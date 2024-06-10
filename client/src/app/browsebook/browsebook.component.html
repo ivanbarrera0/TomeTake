@@ -24,8 +24,8 @@
 
     <div *ngIf="bookList.length > 0; else elseBlock">
         <div *ngFor="let book of bookList">
-            <img [src]="this.remote.getImageSrc(book.imageType) + book.image" alt="{{book.title}}" height="200" width="200">
-            <h3 (click)="showBookView(book)" class="clickable">Title: {{book.title}}</h3>
+            <img (click)="showBookView(book)" class="clickable" [src]="this.remote.getImageSrc(book.imageType) + book.image" alt="{{book.title}}" height="200" width="200">
+            <h3 (click)="showBookView(book)" class="clickable">{{book.title}}</h3>
             <p>by {{book.author}}</p>
             <br>
         </div>

@@ -30,30 +30,35 @@ export class LoginComponent {
   }
 
   submitLogin() {
-    let auth:Auth = {
-      username: this.username,
-      password: this.password
-    }
 
-    this.remote.submitLogin(auth)
-    .subscribe({
-      next: (data) => {
-        alert("Login Successful!");
-        let currentUser = data.body as User;
-        this.currentUserService.setUserId(currentUser.id);
-        this.currentUserService.setUsername(currentUser.username);
-        this.currentUserService.setEmail(currentUser.email);
-        this.currentUserService.setIsPublisher(currentUser.isPublisher);
-        this.authService.login();
-        if(currentUser.isPublisher) {
-          this.authService.confirmIsPublisher();
-        }
-        this.remote.redirect('dashboard');
-      },
-      error: (error: HttpErrorResponse) => {
-        alert("Access Denied...")
-        console.log(error);
+    if(this.username === "" || this.password === "") {
+      alert("Username or Password field(s) are empty!")
+    } else {
+      let auth:Auth = {
+        username: this.username,
+        password: this.password
       }
-    })
+  
+      this.remote.submitLogin(auth)
+      .subscribe({
+        next: (data) => {
+          alert("Login Successful!");
+          let currentUser = data.body as User;
+          this.currentUserService.setUserId(currentUser.id);
+          this.currentUserService.setUsername(currentUser.username);
+          this.currentUserService.setEmail(currentUser.email);
+          this.currentUserService.setIsPublisher(currentUser.isPublisher);
+          this.authService.login();
+          if(currentUser.isPublisher) {
+            this.authService.confirmIsPublisher();
+          }
+          this.remote.redirect('dashboard');
+        },
+        error: (error: HttpErrorResponse) => {
+          alert("Access Denied...")
+          console.log(error);
+        }
+      })
+    }
   }
 }
