@@ -40,10 +40,16 @@ export class RegisterComponent {
     if(this.username === '' || this.email === '' || this.password === '' || this.confirmPassword === '') {
       alert("One or more fields are blank!");
     }
+    else if(this.username.length < 5) {
+      alert("Username should be 5 or more characters!")
+    }
     else if(!this.validateEmail(this.email)) {
       alert("Please enter a valid email!")
     }
-    else if(this.confirmPassword !== this.password) {
+    else if(this.password.length < 8) {
+      alert("Password is too short!")
+    } 
+    else if(this.password !== this.confirmPassword) {
       alert("Password and Confirm Password are different!");
     } else {
       let registerUserDto: RegisterUserDto = {
@@ -73,6 +79,12 @@ export class RegisterComponent {
   }
 
   validateEmail(email:string):boolean {
+
+    const word = email.split("@");
+
+    if(word[0] == null) {
+      return false;
+    }
 
     if(!email.includes("@") || email.indexOf("@") !== email.lastIndexOf("@")) {
       return false;

@@ -2,22 +2,22 @@
 
 <label>Username: </label>
 <br>
-<input type="text" id="username" [(ngModel)]="username">
+<input type="text" id="username" [(ngModel)]="username" maxlength="40">
 <br>
 <label>Email:</label>
 <br>
-<input type="email" id="email" [(ngModel)]="email">
+<input type="email" id="email" [(ngModel)]="email" maxlength="40">
 <br>
 <label>Password:</label>
 <br>
-<input type="password" id="password" [(ngModel)]="password" (blur)="this.passwordClick = true">
+<input type="password" id="password" [(ngModel)]="password" (blur)="this.passwordClick = true" maxlength="40">
 <br>
 <ng-container *ngIf="this.password.length < 8 && this.passwordClick">
     <p class="password">* Field must be at least 8 characters long</p>
 </ng-container>
 <label>Confirm Password: </label>
 <br>
-<input type="password" id="confirmPassword" [(ngModel)]="confirmPassword" (blur)="this.confirmPasswordClick = true">
+<input type="password" id="confirmPassword" [(ngModel)]="confirmPassword" (blur)="this.confirmPasswordClick = true" maxlength="40">
 <br>
 <ng-container *ngIf="this.confirmPassword.length < 8 && this.confirmPasswordClick">
     <p class="password">* Field must have at least 8 characters long</p>

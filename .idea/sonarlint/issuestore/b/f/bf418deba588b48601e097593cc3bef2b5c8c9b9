@@ -1,5 +1,8 @@
 
+^
+java:S6353!"<Use concise character class syntax '\\d' instead of '[0-9]'.(ìÂŒÃüÿÿÿÿ8¢ŠóÂ‚2
 o
-java:S1128"MRemove this unused import 'com.example.demo.exception.InvalidImageException'.(ıˆ–æûÿÿÿÿ8á‰İü1
+java:S1128"MRemove this unused import 'com.example.demo.exception.InvalidImageException'.(ıˆ–æûÿÿÿÿ8ç­‰Ã‚2
 J
-java:S1128	"-Remove this unused import 'java.util.Base64'.(ëŠ»Õ8á‰İü1
+java:S1128
+"-Remove this unused import 'java.util.Base64'.(ëŠ»Õ8è­‰Ã‚2

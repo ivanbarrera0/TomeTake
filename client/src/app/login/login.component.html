@@ -2,11 +2,11 @@
 <br>
 <label>Username: </label>
 <br>
-<input type="text" id="username" [(ngModel)]="username">
+<input type="text" id="username" [(ngModel)]="username" maxlength="40">
 <br>
 <label>Password: </label>
 <br>
-<input type="password" id="password" [(ngModel)]="password">
+<input type="password" id="password" [(ngModel)]="password" maxlength="40">
 <br>
 <br>
 <button (click)="submitLogin()">Log in</button>

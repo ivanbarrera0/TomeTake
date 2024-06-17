@@ -2,16 +2,17 @@
 <br>
 <label>Title: </label>
 <br>
-<input type="text" id="title" [(ngModel)]="title"> 
+<input type="text" id="title" [(ngModel)]="title" maxlength="100"> 
 <br>
 <label>Author: </label>
 <br>
-<input type="text" id="author" [(ngModel)]="author">
+<input type="text" id="author" [(ngModel)]="author" maxlength="100">
 <br>
 <label>Genre: </label>
 <br>
 <select [(ngModel)]="genre">
-    <option value="Adventure"></option>
+    <option value="" selected disabled hidden>Select Genre</option>
+    <option value="Adventure">Adventure</option>
     <option value="Autobiography">Autobiography</option>
     <option value="Biography">Biography</option>
     <option value="Children's Literature">Children's Literature</option>
@@ -25,19 +26,19 @@
 <br>
 <label>Description: </label>
 <br>
-<input type="text" id="description" [(ngModel)]="description">
+<textarea id="description" [(ngModel)]="description" maxlength="250"></textarea>
 <br>
 <label>Publication Year: </label>
 <br>
-<input type="text" id="publicationYear" [(ngModel)]="publicationYear">
+<input type="text" id="publicationYear" [(ngModel)]="publicationYear" maxlength="4">
 <br>
 <label>Quantity: </label> 
 <br>
-<input type="number" id="quantity" [(ngModel)]="quantity">
+<input type="number" id="quantity" [(ngModel)]="quantity" maxlength="3">
 <br>
 <label>Number of Pages: </label>
 <br>
-<input type="number" id="numberOfPages" [(ngModel)]="numberOfPages">
+<input type="number" id="numberOfPages" [(ngModel)]="numberOfPages" maxlength="5">
 <br>
 <label>Image: </label>
 <br>

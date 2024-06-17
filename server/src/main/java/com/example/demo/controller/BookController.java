@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entities.Book;
+import com.example.demo.exception.InvalidBookException;
 import com.example.demo.exception.InvalidImageException;
 import com.example.demo.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class BookController {
     public Book addBook(@RequestParam String title, @RequestParam int quantity, @RequestParam int numberOfPages,
                         @RequestParam String author, @RequestParam String genre, @RequestParam String description,
                         @RequestParam String publicationYear, @RequestParam String imageType,
-                        @RequestBody MultipartFile image) throws InvalidImageException {
+                        @RequestBody MultipartFile image) throws InvalidImageException, InvalidBookException {
 
         try {
 

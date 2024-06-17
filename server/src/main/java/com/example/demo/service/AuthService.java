@@ -3,9 +3,7 @@ package com.example.demo.service;
 import com.example.demo.dto.RegisterUserDto;
 import com.example.demo.entities.Auth;
 import com.example.demo.entities.User;
-import com.example.demo.exception.AccessDeniedException;
-import com.example.demo.exception.DuplicateUsernameException;
-import com.example.demo.exception.UserNotFoundException;
+import com.example.demo.exception.*;
 import com.example.demo.repository.AuthRepository;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +28,20 @@ public class AuthService {
     when authenticating a user
      */
 
-    public User registerUser(RegisterUserDto registerUserDto) throws DuplicateUsernameException {
+    public User registerUser(RegisterUserDto registerUserDto) throws DuplicateUsernameException, InvalidUsernameException, InvalidEmailException, InvalidPasswordException {
+
+        User inspectUser = registerUserDto.getUser();
+        Auth inspectAuth = registerUserDto.getAuth();
+
+        if(inspectUser.getUsername() == null || inspectUser.getUsername().length() > 255) {
+            throw new InvalidUsernameException("Username is invalid!");
+        }
+        else if(inspectUser.getEmail() == null || inspectUser.getEmail().length() > 255) {
+            throw new InvalidEmailException("Email is invalid!");
+        }
+        else if(inspectAuth.getPassword() == null || inspectAuth.getPassword().length() > 255) {
+            throw new InvalidPasswordException("Password is invalid");
+        }
 
         userService.checkIfUserExistsByUsername(registerUserDto.getUser().getUsername());
 
@@ -40,7 +51,13 @@ public class AuthService {
         return userService.saveOrUpdate(registerUserDto.getUser());
     }
 
-    public User findUserByUsername(String username, String password) throws UserNotFoundException, AccessDeniedException {
+    public User findUserByUsername(String username, String password) throws UserNotFoundException, AccessDeniedException, InvalidUsernameException, InvalidPasswordException {
+
+        if(username == null || username.length() > 255) {
+            throw new InvalidUsernameException("Username is invalid!");
+        } else if(password == null || password.length() > 255) {
+            throw new InvalidPasswordException("Password is invalid!");
+        }
 
         Optional<Auth> foundUser = authRepository.findByUsername(username);
 
@@ -48,8 +65,7 @@ public class AuthService {
             Auth auth = foundUser.get();
 
             if(checkHash(password, auth.getPassword())) {
-                User user = userService.getUserInformation(username);
-                return user;
+                return userService.getUserInformation(username);
             }
             else {
                 throw new AccessDeniedException("Access denied!");

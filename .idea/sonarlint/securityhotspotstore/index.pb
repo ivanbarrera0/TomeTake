@@ -53,3 +53,11 @@ Bserver/src/main/java/com/example/demo/security/SecurityConfig.java,1\a\1a8bcd7
 Rserver/src/main/java/com/example/demo/security/CustomAuthenticationEntryPoint.java,8\6\86a8ce55cdbd22b46f38578da620bb4172f1d99d
 r
 Bserver/src/main/java/com/example/demo/service/UserAuthService.java,2\2\227ecf75c0be2155a9f81726fb039aa16cff54ac
+}
+Mserver/src/main/java/com/example/demo/exception/InvalidUsernameException.java,6\4\64879cfbc7cb36f80664daec9aeaf8a5fff45dec
+z
+Jserver/src/main/java/com/example/demo/exception/InvalidEmailException.java,6\c\6ce38223b07b86188747a7ae88f3f4fd5bc19a76
+}
+Mserver/src/main/java/com/example/demo/exception/InvalidPasswordException.java,9\e\9e4a944e6e042f66d5793fa0aa4056440408fa1e
+y
+Iserver/src/main/java/com/example/demo/exception/InvalidBookException.java,a\d\adae7d678d2f68ebda9c39e3c63f74694b08a067

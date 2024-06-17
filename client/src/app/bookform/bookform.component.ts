@@ -91,19 +91,34 @@ export class BookformComponent {
     } else if(this.description === "") {
       alert("Please enter a description");
       return false;
-    } else if(this.publicationYear === "") {
+    } else if(this.publicationYear === "" || !this.validatePublicationYear(this.publicationYear)) {
       alert("Please enter a publication year");
       return false;
-    } else if(this.quantity <= 0) {
+    } else if(this.quantity <= 0 || this.quantity % 1 !== 0) {
       alert("Please enter a valid quantity");
       return false;
-    } else if(this.numberOfPages <= 0) {
+    } else if(this.numberOfPages <= 0 || this.numberOfPages % 1 !== 0) {
       alert("Please enter a valid number of pages");
       return false;
     } else if(this.image == null || this.image.size > 1048576) {
       alert("Image file is too large or was not uploaded");
       return false;
     }
+    return true;
+  }
+
+  validatePublicationYear(publicationYear:string):boolean {
+
+    if(isNaN(parseInt(publicationYear))) {
+      return false;
+    }
+
+    const year = parseInt(publicationYear);
+
+    if(year <= 0 || year % 1 !== 0) {
+      return false;
+    }
+
     return true;
   }
 }
