@@ -33,6 +33,8 @@ export class BookviewComponent {
     console.log(this.currentBook);
     console.log(this.currentUser);
 
+    this.book.quantity -= 1;
+
     let checkout = {
       user: {
         id: this.currentUser.getUserId(),

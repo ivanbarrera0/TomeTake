@@ -2,6 +2,7 @@ package com.example.demo.repository;
 
 import com.example.demo.entities.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -28,4 +29,8 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
             "JOIN users ON checkout.user_id = users.user_id " +
             "WHERE users.user_id = ?1", nativeQuery = true)
     public List<Book> retrieveCheckedOutBooksByUserId(int id);
+
+    @Modifying
+    @Query(value = "UPDATE books SET quantity = quantity - 1 WHERE book_id = ?1", nativeQuery = true)
+    public void bookCheckedOut(int id);
 }
