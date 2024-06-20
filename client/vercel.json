@@ -1,12 +1,5 @@
 {
-   "version": 2,
-  "builds": [
-    {
-      "src": "dist/TomeTake/**",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "/index.html" }
+  "rewrites": [
+    { "source": "/(.*)", "dest": "/index.html" }
   ]
 }
