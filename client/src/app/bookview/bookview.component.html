@@ -10,12 +10,15 @@
 <br>
 
 <div *ngIf="book.quantity > 0; else elseBlock">
-    <button (click)="checkoutBook()">Checkout Book</button>
+    <button (click)="checkoutBook(); showMessage(book.title)">Checkout Book</button>
 </div>
 <ng-template #elseBlock>
-    <label>Sold Out</label>
+    <button (click)="showMessage(book.title)" class="sold-out-button">Sold out</button>
 </ng-template>
 
+<div class="popup-message" *ngIf="isVisible">
+    <p>{{message}}</p>
+</div>
 
 <br>
 <br>

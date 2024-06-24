@@ -20,12 +20,16 @@ export class BookviewComponent {
   currentUser:CurrentuserService;
   remote: RemoteService;
   book:Book;
+  isVisible: boolean = false;
+  message: string;
+  timeoutId: any;
 
   constructor(currentBook: CurrentbookService, currentUser:CurrentuserService, remote:RemoteService) {
     this.currentBook = currentBook;
     this.currentUser = currentUser;
     this.remote = remote;
     this.book = this.currentBook.getCurrentBook();
+    this.message = '';
   }
 
   checkoutBook() {
@@ -64,5 +68,24 @@ export class BookviewComponent {
         console.log(error);
       }
     })    
+  }
+
+  showMessage(message:string) {
+
+    if(this.book.quantity > 0) {
+      this.message = "You have checked out " + message;
+    } else {
+      this.message = "Sorry, " + message + " has sold out";
+    }
+
+    if(this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+
+    this.isVisible = true;
+
+    this.timeoutId = setTimeout(() => {
+      this.isVisible = false;
+    }, 3000);
   }
 }
